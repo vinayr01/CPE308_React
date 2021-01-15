@@ -13,7 +13,7 @@ function MyApp() {
         makeDeleteCall(characters[index]).then(result => {
             if (result)
                 setCharacters(updated);
-        })
+        });
     }
 
     function updateList(person) {
@@ -46,7 +46,7 @@ function MyApp() {
         try {
             const response = await axios.post('http://localhost:5000/users', person);
             person = response.data;
-            if (response.status == 201) {
+            if (response.status === 201) {
                 return response;
             }
         }
@@ -58,9 +58,9 @@ function MyApp() {
 
     async function makeDeleteCall(person) {
         try {
-            const response = await axios.delete('http://localhost:5000/users/{person.id}');
-            if (response.status == 204) {
-                return response.data
+            var response = await axios.delete('http://localhost:5000/users/'+person.id);
+            if (response.status === 204) {
+                return response;
             }
         }
         catch (error) {
