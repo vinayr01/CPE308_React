@@ -45,7 +45,7 @@ function MyApp() {
     async function makePostCall(person) {
         try {
             const response = await axios.post('http://localhost:5000/users', person);
-            person = response.data;
+            person.id = response.data.id;
             if (response.status === 201) {
                 return response;
             }
